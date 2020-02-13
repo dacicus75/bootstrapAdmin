@@ -1,54 +1,54 @@
-const path = require ("path");
-const webpack = require ("webpack");
-const MiniCssExtractPlugin = require ("mini-css-extract-plugin");
+const path = require('path');
+const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     devServer: {
-        contentBase: path.resolve(__dirname, "demo"),
-        compress: true,
+        contentBase: path.resolve(__dirname,'demo'),
+        compress:true,
         publicPath: "demo",
-        writeToDisk: true
+        writeToDisk:true
     },
-    entry: "./src/js/app.js",
-    output: {
-        filename: "app.js",
-        path: path.resolve(__dirname,"demo/js"),
-        publicPath: "demo"
+    entry: './src/js/app.js',
+    output:{
+        filename: 'app.js',
+        path: path.resolve(__dirname, 'demo/js'),
+        publicPath: 'demo'
     },
-    module: {
-        rules: [
+    module:{
+        rules:[
             {
-                test:/\.(scss)$/,
-                use: [
+                test: /\.(scss)$/,
+                use:[
                     {
                         loader: MiniCssExtractPlugin.loader,
                     },
                     {
-                        loader: "css-loader"
+                        loader: 'css-loader'
                     },
                     {
-                        loader: "postcss-loader",
-                        options: {
-                            plugins: function () {
+                        loader: 'postcss-loader',
+                        options:{
+                            plugins: function() {
                                 return [
-                                    require("autoprefixer")
+                                    require('autoprefixer')
                                 ];
                             }
                         }
                     },
                     {
-                        loader: "sass-loader"
+                        loader: 'sass-loader'
                     }
                 ]
             },
             {
-                test: /\.(eot|woff2|ttf|svg)(\?\S*)?$/,
-                use: [
+                test: /\.(eot|woff|woff2|ttf|svg)(\?\S*)?$/,
+                use:[
                     {
-                        loader: "file-loader",
+                        loader: 'file-loader',
                         options: {
-                            name: "[name].[ext]",
-                            outputPath: "../fonts/",
-                            publicPath: "../fonts/"
+                            name: '[name].[ext]',
+                            outputPath: '../fonts/',
+                            publicPath: '../fonts/'
                         }
                     }
                 ]
@@ -57,11 +57,11 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "../css/app.css"
+            filename: '../css/app.css'
         }),
         new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery"
+            $: 'jquery',
+            jQuery: 'jquery'
         })
     ]
 }
